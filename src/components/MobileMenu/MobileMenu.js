@@ -39,17 +39,6 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
 	)
 }
 
-const Wrapper = styled(DialogOverlay)`
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: var(--color-backdrop);
-	display: flex;
-	justify-content: flex-end;
-`
-
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -67,20 +56,25 @@ const slideIn = keyframes`
   }
 `
 
+const Wrapper = styled(DialogOverlay)`
+	position: fixed;
+	inset: 0;
+	background: transparent;
+	display: flex;
+	justify-content: flex-end;
+`
 const Backdrop = styled.div`
 	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	inset: 0;
 	background: var(--color-backdrop);
-	animation: ${fadeIn} 500ms;
+	animation: ${fadeIn} 690ms;
 `
-
 const Content = styled(DialogContent)`
+	--overfill: 16px; /* To compensate the custom "cubic-bezier" movement */
 	background: white;
-	width: 300px;
+	width: calc(300px + var(--overfill));
 	height: 100%;
+	margin-right: calc(var(--overfill) * -1);
 	padding: 24px 32px;
 	display: flex;
 	flex-direction: column;
@@ -90,7 +84,6 @@ const Content = styled(DialogContent)`
 		animation-delay: 200ms;
 	}
 `
-
 const InnerWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -102,7 +95,7 @@ const InnerWrapper = styled.div`
 const CloseButton = styled(UnstyledButton)`
 	position: absolute;
 	top: 10px;
-	right: 0;
+	right: var(--overfill);
 	padding: 16px;
 `
 
