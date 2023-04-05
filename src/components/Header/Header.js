@@ -122,7 +122,7 @@ const Wrapper = styled.a`
 	color: var(--color-gray-900);
 	font-weight: ${WEIGHTS.medium};
 
-	/* Text slide-up effect */
+	/* Text slide-down effect */
 	overflow: hidden;
 	&:first-of-type {
 		color: var(--color-secondary);
