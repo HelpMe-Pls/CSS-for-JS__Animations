@@ -79,14 +79,20 @@ const ImageWrapper = styled.div`
 `
 
 const Image = styled.img`
-	display: block;
+	display: block; /* To get rid of "magic" space */
 	width: 100%;
+	filter: brightness(90%);
 	transform-origin: 50% 90%;
-	transition: transform 690ms;
+	transition: transform 690ms, filter 960ms;
+	will-change: transform;
 
-	&:hover {
-		transform: scale(1.1);
-		transition: transform 250ms;
+	@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+		${Link}:hover &,
+      ${Link}:focus & {
+			filter: brightness(100%);
+			transform: scale(1.1);
+			transition: transform 250ms, filter 450ms;
+		}
 	}
 `
 
